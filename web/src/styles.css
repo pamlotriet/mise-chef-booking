@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@import "primeicons/primeicons.css";
+
+:root {
+  --app-bg: #f5f7fb;
+  --app-text: #1f2937;
+
+  --nav-bg: #1b120d;
+  --nav-surface: #2a2119;
+  --nav-surface-active: #33271e;
+  --nav-avatar-bg: #5a422b;
+  --nav-text: #d8cfc2;
+  --nav-muted: #a79887;
+  --nav-accent: #d9a653;
+  --nav-accent-contrast: #17130d;
+  --nav-avatar-text: #f4d19a;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--app-bg);
+  color: var(--app-text);
+}
+
+button {
+  cursor: pointer;
+}
