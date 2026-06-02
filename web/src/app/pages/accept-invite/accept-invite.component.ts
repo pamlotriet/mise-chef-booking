@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthApi } from '../../core/auth/auth.api';
+import { AuthService } from '../../api/services/auth.service';
 
 @Component({
   standalone: true,
@@ -55,7 +55,7 @@ export class AcceptInviteComponent {
   private readonly fb = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly authApi = inject(AuthApi);
+  private readonly authService = inject(AuthService);
 
   protected readonly form = this.fb.nonNullable.group({
     password: ['', [Validators.required, Validators.minLength(8)]]
@@ -68,9 +68,11 @@ export class AcceptInviteComponent {
       return;
     }
 
-    this.authApi.acceptInvite({
-      token,
-      password: this.form.controls.password.value
+    this.authService.apiAuthAcceptInvitePost({
+      body: {
+        token,
+        password: this.form.controls.password.value
+      }
     }).subscribe(() => {
       this.router.navigateByUrl('/login');
     });

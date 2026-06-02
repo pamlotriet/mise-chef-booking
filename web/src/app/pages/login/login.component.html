@@ -29,8 +29,8 @@
                             <div
                                 class="flex h-12 items-center gap-3 rounded-xl border border-[#1f4d36] bg-white px-4 shadow-[0_0_0_3px_rgba(31,77,54,0.08)]">
                                 <span class="text-[#7b746b]" aria-hidden="true">@</span>
-                                <input class="h-full min-w-0 flex-1 bg-transparent text-sm text-[#111813] outline-none"
-                                    type="email" formControlName="email" />
+                                <input class="h-full min-w-0 flex-1 bg-transparent text-sm text-[#111813] outline-none disabled:cursor-not-allowed"
+                                    type="email" formControlName="email" [disabled]="authStore.loading()" />
                             </div>
                         </label>
 
@@ -41,16 +41,21 @@
                             </div>
                             <div class="flex h-12 items-center gap-3 rounded-xl border border-[#ded6cb] bg-white px-4">
                                 <span class="text-[#7b746b]" aria-hidden="true">*</span>
-                                <input class="h-full min-w-0 flex-1 bg-transparent text-sm text-[#111813] outline-none"
-                                    type="password" formControlName="password" />
+                                <input class="h-full min-w-0 flex-1 bg-transparent text-sm text-[#111813] outline-none disabled:cursor-not-allowed"
+                                    type="password" formControlName="password" [disabled]="authStore.loading()" />
                             </div>
                         </label>
 
                         <button
                             class="flex h-[52px] w-full items-center justify-center gap-3 rounded-xl bg-[#183c29] text-sm font-semibold text-white shadow-lg shadow-[#183c29]/10 transition hover:bg-[#12311f] disabled:cursor-not-allowed disabled:opacity-60"
                             type="submit" [disabled]="form.invalid || authStore.loading()">
-                            Sign in
+                            @if (authStore.loading()) {
+                            <i class="pi pi-spinner pi-spin text-base" aria-hidden="true"></i>
+                            <span>Signing in...</span>
+                            } @else {
+                            <span>Sign in</span>
                             <span aria-hidden="true">&rarr;</span>
+                            }
                         </button>
                     </form>
 

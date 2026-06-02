@@ -2,12 +2,13 @@ import { computed, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
 import { catchError, finalize, tap, throwError } from "rxjs";
-import { AuthApi } from "../../auth/auth.api";
-import { CurrentUser, LoginRequest } from "../../auth/auth.models";
+import { AuthService } from "../../../api/services/auth.service";
+import { LoginRequest } from "../../../api/models/login-request";
+import { UserResponse } from "../../../api/models/user-response";
 
 type AuthState = {
   token: string | null;
-  currentUser: CurrentUser | null;
+  currentUser: UserResponse | null;
   loading: boolean;
   error: string | null;
 };
@@ -27,12 +28,16 @@ export const AuthStore = signalStore(
   withComputed((store) => ({
     isAuthenticated: computed(() => !!store.token()),
   })),
-  withMethods((store, api = inject(AuthApi), router = inject(Router)) => ({
+  withMethods((store, authService = inject(AuthService), router = inject(Router)) => ({
     login(request: LoginRequest) {
       patchState(store, { loading: true, error: null });
 
-      return api.login(request).pipe(
+      return authService.apiAuthLoginPost$Json({ body: request }).pipe(
         tap((response) => {
+          if (!response.accessToken) {
+            throw new Error("Login response did not include an access token.");
+          }
+
           localStorage.setItem(tokenKey, response.accessToken);
           patchState(store, { token: response.accessToken });
         }),
@@ -45,8 +50,15 @@ export const AuthStore = signalStore(
     },
 
     loadCurrentUser() {
-      return api.me().pipe(
-        tap((user) => patchState(store, { currentUser: user }))
+      patchState(store, { loading: true, error: null });
+
+      return authService.apiAuthMeGet$Json().pipe(
+        tap((user) => patchState(store, { currentUser: user })),
+        catchError((error: unknown) => {
+          patchState(store, { error: "Unable to load your account." });
+          return throwError(() => error);
+        }),
+        finalize(() => patchState(store, { loading: false }))
       );
     },
 
@@ -55,7 +67,7 @@ export const AuthStore = signalStore(
     },
 
     hasRole(role: string): boolean {
-      return store.currentUser()?.roles.includes(role) ?? false;
+      return store.currentUser()?.roles?.includes(role) ?? false;
     },
 
     logout(): void {
