@@ -5,7 +5,8 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "api:gen": "ng-openapi-gen",
+    "api:docs": "curl.exe -k -L https://localhost:62833/swagger/v1/swagger.json -o openapi.json",
+    "api:gen": "npm run api:docs && ng-openapi-gen --input ./openapi.json",
     "api:gen:local": "ng-openapi-gen --input ./openapi.json"
   },
   "dependencies": {
