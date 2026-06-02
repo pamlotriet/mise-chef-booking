@@ -1,105 +1,76 @@
-<aside
-  class="flex h-screen shrink-0 flex-col bg-[var(--nav-bg)] text-[var(--nav-text)] transition-[width] duration-300"
-  [class.w-[280px]]="!collapsed"
-  [class.w-[88px]]="collapsed"
->
-  <div
-    class="flex items-center transition-all duration-300"
-    [ngClass]="
+<aside class="flex h-screen shrink-0 flex-col bg-[var(--nav-bg)] text-[var(--nav-text)] transition-[width] duration-300"
+  [class.w-[280px]]="!collapsed" [class.w-[88px]]="collapsed">
+  <div class="flex items-center transition-all duration-300" [ngClass]="
       collapsed
         ? 'h-32 flex-col justify-center gap-3 px-4'
         : 'h-24 flex-row justify-between px-6'
-    "
-  >
+    ">
     <a routerLink="/dashboard" class="flex items-center gap-3">
       <span
-        class="flex size-10 items-center justify-center rounded-full bg-[var(--nav-accent)] font-serif text-lg font-semibold text-[var(--nav-accent-contrast)]"
-      >
+        class="flex size-10 items-center justify-center rounded-full bg-[var(--nav-accent)] font-serif text-lg font-semibold text-[var(--nav-accent-contrast)]">
         M
       </span>
       @if (!collapsed) {
-        <span class="font-serif text-2xl text-white">Mise</span>
+      <span class="font-serif text-2xl text-white">Mise</span>
       }
     </a>
 
-    <button
-      type="button"
+    <button type="button"
       class="flex size-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-[var(--nav-text)] transition hover:bg-white/10"
-      (click)="toggle()"
-      [attr.aria-label]="collapsed ? 'Expand navigation' : 'Collapse navigation'"
-    >
-      <i
-        class="pi text-base leading-none"
-        [ngClass]="collapsed ? 'pi-chevron-right' : 'pi-chevron-left'"
-        aria-hidden="true"
-      ></i>
+      (click)="toggle()" [attr.aria-label]="collapsed ? 'Expand navigation' : 'Collapse navigation'">
+      <i class="pi text-base leading-none" [ngClass]="collapsed ? 'pi-chevron-right' : 'pi-chevron-left'"
+        aria-hidden="true"></i>
     </button>
   </div>
 
   <nav class="flex-1 px-5">
     @if (!collapsed) {
-      <p
-        class="mb-3 px-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--nav-muted)]"
-      >
-        Your account
-      </p>
+    <p class="mb-3 px-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--nav-muted)]">
+      Your account
+    </p>
     }
 
     <div class="space-y-2">
       @for (item of navItems; track item.route) {
-        <a
-          [routerLink]="item.route"
-          [ngClass]="
+      @if(showNavigationBasedOnRole(item.role)){
+
+      <a [routerLink]="item.route" [ngClass]="
             item.active
               ? 'bg-[var(--nav-surface-active)] text-[var(--nav-accent)]'
               : ''
           "
-          class="flex h-12 items-center gap-3 rounded-xl px-3 text-sm font-semibold transition hover:bg-[var(--nav-surface)] hover:text-[var(--nav-accent)]"
-          [class.justify-center]="collapsed"
-        >
-          <i
-            class="pi flex size-6 items-center justify-center text-base"
-            [ngClass]="item.icon"
-            aria-hidden="true"
-          ></i>
-          @if (!collapsed) {
-            <span class="flex-1">{{ item.label }}</span>
-            <span
-              class="size-1.5 rounded-full bg-[var(--nav-accent)]"
-              [class.opacity-100]="item.active"
-              [class.opacity-0]="!item.active"
-            ></span>
-          }
-        </a>
+        class="flex h-12 items-center gap-3 rounded-xl px-3 text-sm font-semibold transition hover:bg-[var(--nav-surface)] hover:text-[var(--nav-accent)]"
+        [class.justify-center]="collapsed">
+        <i class="pi flex size-6 items-center justify-center text-base" [ngClass]="item.icon" aria-hidden="true"></i>
+        @if (!collapsed) {
+        <span class="flex-1">{{ item.label }}</span>
+        <span class="size-1.5 rounded-full bg-[var(--nav-accent)]" [class.opacity-100]="item.active"
+          [class.opacity-0]="!item.active"></span>
+        }
+      </a>
+      }
       }
     </div>
   </nav>
 
   <div>
-    <div
-      class="m-3 flex items-center gap-3 rounded-2xl bg-[var(--nav-surface)] p-3"
-      [class.justify-center]="collapsed"
-    >
+    <div class="m-3 flex items-center gap-3 rounded-2xl bg-[var(--nav-surface)] p-3" [class.justify-center]="collapsed">
       <span
-        class="flex size-10 items-center justify-center rounded-full bg-[var(--nav-avatar-bg)] font-serif text-[var(--nav-avatar-text)]"
-      >
+        class="flex size-10 items-center justify-center rounded-full bg-[var(--nav-avatar-bg)] font-serif text-[var(--nav-avatar-text)]">
         {{ userInitial }}
       </span>
       @if (!collapsed) {
-        <div class="min-w-0 flex-1">
-          <p class="truncate text-sm font-semibold text-white">
-            {{ userName }}
-          </p>
-          <p class="text-xs text-[var(--nav-muted)]">Member</p>
-        </div>
-        <button
-          type="button"
-          class="rounded-lg px-2 py-1 text-xl leading-none text-[var(--nav-muted)] hover:bg-white/10 hover:text-white"
-          (click)="authStore.logout()"
-          aria-label="Logout"
-        >
-          <i class="pi pi-sign-out" aria-hidden="true"></i>
-        </button>
+      <div class="min-w-0 flex-1">
+        <p class="truncate text-sm font-semibold text-white">
+          {{ userName }}
+        </p>
+        <p class="text-xs text-[var(--nav-muted)]">Member</p>
+      </div>
+      <button type="button"
+        class="rounded-lg px-2 py-1 text-xl leading-none text-[var(--nav-muted)] hover:bg-white/10 hover:text-white"
+        (click)="authStore.logout()" aria-label="Logout">
+        <i class="pi pi-sign-out" aria-hidden="true"></i>
+      </button>
       }
     </div>
   </div>
