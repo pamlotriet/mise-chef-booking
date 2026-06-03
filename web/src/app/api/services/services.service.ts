@@ -6,15 +6,15 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import { BaseService } from '@api/base-service';
+import { ApiConfiguration } from '@api/api-configuration';
+import { StrictHttpResponse } from '@api/strict-http-response';
 
-import { apiServicesGet$Json } from '../fn/services/api-services-get-json';
-import { ApiServicesGet$Json$Params } from '../fn/services/api-services-get-json';
-import { apiServicesGet$Plain } from '../fn/services/api-services-get-plain';
-import { ApiServicesGet$Plain$Params } from '../fn/services/api-services-get-plain';
-import { ServiceResponse } from '../models/service-response';
+import { apiServicesGet$Json } from '@api/fn/services/api-services-get-json';
+import { ApiServicesGet$Json$Params } from '@api/fn/services/api-services-get-json';
+import { apiServicesGet$Plain } from '@api/fn/services/api-services-get-plain';
+import { ApiServicesGet$Plain$Params } from '@api/fn/services/api-services-get-plain';
+import { ServiceResponse } from '@api/models/service-response';
 
 @Injectable({ providedIn: 'root' })
 export class ServicesService extends BaseService {

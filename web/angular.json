@@ -3,6 +3,9 @@
   "version": 1,
   "projects": {
     "portfolio-starter-web": {
+      "i18n": {
+        "sourceLocale": "en"
+      },
       "projectType": "application",
       "root": "",
       "sourceRoot": "src",
@@ -30,6 +33,5 @@
         }
       }
     }
-  },
-  "defaultProject": "portfolio-starter-web"
+  }
 }

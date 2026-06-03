@@ -6,12 +6,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import { BaseService } from '@api/base-service';
+import { ApiConfiguration } from '@api/api-configuration';
+import { StrictHttpResponse } from '@api/strict-http-response';
 
-import { apiAdminUsersInvitePost } from '../fn/users/api-admin-users-invite-post';
-import { ApiAdminUsersInvitePost$Params } from '../fn/users/api-admin-users-invite-post';
+import { apiAdminUsersInvitePost } from '@api/fn/users/api-admin-users-invite-post';
+import { ApiAdminUsersInvitePost$Params } from '@api/fn/users/api-admin-users-invite-post';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService extends BaseService {

@@ -6,22 +6,22 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import { BaseService } from '@api/base-service';
+import { ApiConfiguration } from '@api/api-configuration';
+import { StrictHttpResponse } from '@api/strict-http-response';
 
-import { apiAuthAcceptInvitePost } from '../fn/auth/api-auth-accept-invite-post';
-import { ApiAuthAcceptInvitePost$Params } from '../fn/auth/api-auth-accept-invite-post';
-import { apiAuthLoginPost$Json } from '../fn/auth/api-auth-login-post-json';
-import { ApiAuthLoginPost$Json$Params } from '../fn/auth/api-auth-login-post-json';
-import { apiAuthLoginPost$Plain } from '../fn/auth/api-auth-login-post-plain';
-import { ApiAuthLoginPost$Plain$Params } from '../fn/auth/api-auth-login-post-plain';
-import { apiAuthMeGet$Json } from '../fn/auth/api-auth-me-get-json';
-import { ApiAuthMeGet$Json$Params } from '../fn/auth/api-auth-me-get-json';
-import { apiAuthMeGet$Plain } from '../fn/auth/api-auth-me-get-plain';
-import { ApiAuthMeGet$Plain$Params } from '../fn/auth/api-auth-me-get-plain';
-import { LoginResponse } from '../models/login-response';
-import { UserResponse } from '../models/user-response';
+import { apiAuthAcceptInvitePost } from '@api/fn/auth/api-auth-accept-invite-post';
+import { ApiAuthAcceptInvitePost$Params } from '@api/fn/auth/api-auth-accept-invite-post';
+import { apiAuthLoginPost$Json } from '@api/fn/auth/api-auth-login-post-json';
+import { ApiAuthLoginPost$Json$Params } from '@api/fn/auth/api-auth-login-post-json';
+import { apiAuthLoginPost$Plain } from '@api/fn/auth/api-auth-login-post-plain';
+import { ApiAuthLoginPost$Plain$Params } from '@api/fn/auth/api-auth-login-post-plain';
+import { apiAuthMeGet$Json } from '@api/fn/auth/api-auth-me-get-json';
+import { ApiAuthMeGet$Json$Params } from '@api/fn/auth/api-auth-me-get-json';
+import { apiAuthMeGet$Plain } from '@api/fn/auth/api-auth-me-get-plain';
+import { ApiAuthMeGet$Plain$Params } from '@api/fn/auth/api-auth-me-get-plain';
+import { LoginResponse } from '@api/models/login-response';
+import { UserResponse } from '@api/models/user-response';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {

@@ -1,22 +1,23 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../api/services/auth.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { AuthService } from '@api/services/auth.service';
 
 @Component({
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   template: `
     <section class="card">
-      <h1>Accept Invite</h1>
+      <h1>{{ "auth.acceptInvite" | translate }}</h1>
 
       <form [formGroup]="form" (ngSubmit)="submit()">
         <label>
-          New Password
+          {{ "auth.newPassword" | translate }}
           <input type="password" formControlName="password" />
         </label>
 
-        <button type="submit" [disabled]="form.invalid">Set Password</button>
+        <button type="submit" [disabled]="form.invalid">{{ "auth.setPassword" | translate }}</button>
       </form>
     </section>
   `,
@@ -25,9 +26,9 @@ import { AuthService } from '../../api/services/auth.service';
       max-width: 420px;
       margin: 0 auto;
       padding: 2rem;
-      background: white;
+      background: var(--color-surface);
       border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      box-shadow: 0 10px 30px var(--color-focus-ring);
     }
 
     form {
@@ -37,7 +38,7 @@ import { AuthService } from '../../api/services/auth.service';
 
     input {
       padding: .75rem;
-      border: 1px solid #d1d5db;
+      border: 1px solid var(--color-border);
       border-radius: 10px;
     }
 
@@ -45,8 +46,8 @@ import { AuthService } from '../../api/services/auth.service';
       padding: .85rem;
       border: none;
       border-radius: 10px;
-      background: #2563eb;
-      color: white;
+      background: var(--color-primary);
+      color: var(--color-primary-text);
       font-weight: 700;
     }
   `]

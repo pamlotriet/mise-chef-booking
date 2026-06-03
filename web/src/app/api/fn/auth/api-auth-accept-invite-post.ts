@@ -4,10 +4,10 @@
 import { HttpClient, HttpContext, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { StrictHttpResponse } from '../../strict-http-response';
-import { RequestBuilder } from '../../request-builder';
+import { StrictHttpResponse } from '@api/strict-http-response';
+import { RequestBuilder } from '@api/request-builder';
 
-import { AcceptInviteRequest } from '../../models/accept-invite-request';
+import { AcceptInviteRequest } from '@api/models/accept-invite-request';
 
 export interface ApiAuthAcceptInvitePost$Params {
       body?: AcceptInviteRequest

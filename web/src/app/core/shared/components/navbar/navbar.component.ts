@@ -1,10 +1,11 @@
 import { NgClass } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { RouterLink } from "@angular/router";
-import { AuthStore } from "../../core/shared/state/auth.store";
+import { TranslatePipe } from "@ngx-translate/core";
+import { AuthStore } from "@store/authStore/auth.store";
 
 type NavItem = {
-  label: string;
+  labelKey: string;
   route: string;
   icon: string;
   active?: boolean;
@@ -14,54 +15,57 @@ type NavItem = {
 @Component({
   selector: "app-navbar",
   standalone: true,
-  imports: [NgClass, RouterLink],
+  imports: [NgClass, RouterLink, TranslatePipe],
   templateUrl: "./navbar.component.html",
 })
 export class NavbarComponent {
   protected readonly authStore = inject(AuthStore);
   protected collapsed = false;
 
-  // TODO: change to return a single role a user is only allowed to have one role
+  protected get userRole(): string {
+    return this.authStore.currentUser()?.roles?.[0]?.toLowerCase() ?? "";
+  }
+
   protected readonly navItems: NavItem[] = [
     {
-      label: "Dashboard",
+      labelKey: "nav.dashboard",
       route: "/dashboard",
       icon: "pi-th-large",
       active: true,
       role: ["admin", "user"],
     },
     {
-      label: "Experiences",
+      labelKey: "nav.experiences",
       route: "/dashboard",
       icon: "pi-sparkles",
       role: ["user"],
     },
     {
-      label: "My Bookings",
+      labelKey: "nav.myBookings",
       route: "/dashboard",
       icon: "pi-calendar",
       role: ["user"],
     },
     {
-      label: "Services",
+      labelKey: "nav.services",
       route: "/dashboard",
       icon: "pi-calendar",
       role: ["admin"],
     },
     {
-      label: "Bookings",
+      labelKey: "nav.bookings",
       route: "/dashboard",
       icon: "pi-calendar",
       role: ["admin"],
     },
     {
-      label: "Payments",
+      labelKey: "nav.payments",
       route: "/dashboard",
       icon: "pi-calendar",
       role: ["admin"],
     },
     {
-      label: "Users",
+      labelKey: "nav.users",
       route: "/dashboard",
       icon: "pi-calendar",
       role: ["admin"],
@@ -69,8 +73,6 @@ export class NavbarComponent {
   ];
 
   protected get userName(): string {
-    console.log(this.authStore.currentUser());
-    this.showNavigationBasedOnRole(this.navItems[0].role);
     return this.authStore.currentUser()?.fullName ?? "Eleanor Hayes";
   }
 
@@ -81,16 +83,8 @@ export class NavbarComponent {
   protected toggle(): void {
     this.collapsed = !this.collapsed;
   }
-  // TODO: change to return a single role a user is only allowed to have one role
-  //TODO: Update this to lowercase scenario better
-  protected showNavigationBasedOnRole(itemRole: Array<string>) {
-    let userRole = this.authStore.currentUser()?.roles || "";
-    itemRole.forEach((itemRole) => {
-      itemRole = itemRole.toLowerCase();
-    });
-    if (itemRole.includes(userRole[0].toLowerCase())) {
-      return true;
-    }
-    return true;
+
+  protected canShowNavigationItem(itemRole: Array<string>): boolean {
+    return itemRole.some((role) => role.toLowerCase() === this.userRole);
   }
 }

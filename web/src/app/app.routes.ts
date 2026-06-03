@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/auth/auth.guard';
-import { roleGuard } from './core/auth/role.guard';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { LoginComponent } from './pages/login/login.component';
-import { AcceptInviteComponent } from './pages/accept-invite/accept-invite.component';
+import { authGuard } from '@auth/auth.guard';
+import { roleGuard } from '@auth/role.guard';
+import { DashboardComponent } from '@pages/dashboard/dashboard.component';
+import { LoginComponent } from '@pages/login/login.component';
+import { AcceptInviteComponent } from '@pages/accept-invite/accept-invite.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },

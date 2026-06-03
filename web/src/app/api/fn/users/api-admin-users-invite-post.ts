@@ -4,10 +4,10 @@
 import { HttpClient, HttpContext, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { StrictHttpResponse } from '../../strict-http-response';
-import { RequestBuilder } from '../../request-builder';
+import { StrictHttpResponse } from '@api/strict-http-response';
+import { RequestBuilder } from '@api/request-builder';
 
-import { InviteUserRequest } from '../../models/invite-user-request';
+import { InviteUserRequest } from '@api/models/invite-user-request';
 
 export interface ApiAdminUsersInvitePost$Params {
       body?: InviteUserRequest

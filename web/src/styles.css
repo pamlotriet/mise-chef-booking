@@ -2,12 +2,52 @@
 @import "primeicons/primeicons.css";
 
 :root {
-  --app-bg: #f5f7fb;
-  --app-text: #1f2937;
+  --app-bg: #f7f3ed;
+  --app-text: #101510;
+
+  --color-page-bg: #f7f3ed;
+  --color-page-bg-translucent: rgb(247 243 237 / 0.95);
+  --color-surface: #ffffff;
+  --color-surface-translucent: rgb(255 255 255 / 0.65);
+  --color-surface-muted: #eee8df;
+  --color-text: #101510;
+  --color-text-strong: #090806;
+  --color-text-soft: #111813;
+  --color-muted: #6f675e;
+  --color-muted-alt: #675f55;
+  --color-subtle: #7c746a;
+  --color-label: #2f3a32;
+  --color-link: #123d2a;
+  --color-link-alt: #173c29;
+  --color-border: #ded6cb;
+  --color-border-soft: #e1d8cb;
+  --color-border-muted: #e4dbcf;
+  --color-border-strong: #1f4d36;
+  --color-accent: #d7a65a;
+  --color-accent-strong: #d9a653;
+  --color-accent-text: #142417;
+  --color-primary: #183c29;
+  --color-primary-hover: #12311f;
+  --color-primary-text: #ffffff;
+  --color-hero-bg: #1b120d;
+  --color-hero-text: #ffffff;
+  --color-hero-muted: #d8cfc2;
+  --color-card-shadow: rgb(75 52 36 / 0.15);
+  --color-focus-ring: rgb(31 77 54 / 0.08);
+  --color-image-overlay-from: rgb(0 0 0 / 0.65);
+  --color-image-overlay-via: rgb(0 0 0 / 0.20);
+  --color-image-overlay-to: rgb(0 0 0 / 0.10);
+  --color-on-image: #ffffff;
+  --color-on-image-muted: rgb(255 255 255 / 0.75);
+  --color-on-dark-border: rgb(255 255 255 / 0.10);
+  --color-error-bg: #fef2f2;
+  --color-error-text: #b91c1c;
 
   --nav-bg: #1b120d;
   --nav-surface: #2a2119;
   --nav-surface-active: #33271e;
+  --nav-control-bg: rgb(255 255 255 / 0.05);
+  --nav-control-hover: rgb(255 255 255 / 0.10);
   --nav-avatar-bg: #5a422b;
   --nav-text: #d8cfc2;
   --nav-muted: #a79887;

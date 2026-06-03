@@ -4,11 +4,11 @@
 import { HttpClient, HttpContext, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { StrictHttpResponse } from '../../strict-http-response';
-import { RequestBuilder } from '../../request-builder';
+import { StrictHttpResponse } from '@api/strict-http-response';
+import { RequestBuilder } from '@api/request-builder';
 
-import { LoginRequest } from '../../models/login-request';
-import { LoginResponse } from '../../models/login-response';
+import { LoginRequest } from '@api/models/login-request';
+import { LoginResponse } from '@api/models/login-response';
 
 export interface ApiAuthLoginPost$Plain$Params {
       body?: LoginRequest

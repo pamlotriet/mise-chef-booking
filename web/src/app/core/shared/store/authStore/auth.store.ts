@@ -2,9 +2,9 @@ import { computed, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { patchState, signalStore, withComputed, withMethods, withState } from "@ngrx/signals";
 import { catchError, finalize, tap, throwError } from "rxjs";
-import { AuthService } from "../../../api/services/auth.service";
-import { LoginRequest } from "../../../api/models/login-request";
-import { UserResponse } from "../../../api/models/user-response";
+import { AuthService } from "@api/services/auth.service";
+import { LoginRequest } from "@api/models/login-request";
+import { UserResponse } from "@api/models/user-response";
 
 type AuthState = {
   token: string | null;

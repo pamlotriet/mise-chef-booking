@@ -1,0 +1,73 @@
+{
+  "app": {
+    "brand": "Mise"
+  },
+  "auth": {
+    "invitationOnly": "By invitation only",
+    "welcomeBack": "Welcome back.",
+    "loginDescription": "Sign in to manage your private chef experiences, bookings, and reservations.",
+    "email": "Email",
+    "password": "Password",
+    "forgot": "Forgot?",
+    "signingIn": "Signing in...",
+    "signIn": "Sign in",
+    "newToMise": "New to Mise?",
+    "acceptInvitation": "Accept an invitation",
+    "footer": "© 2026 Mise Hospitality · All rights reserved",
+    "quote": "Mise turned our scattered booking spreadsheets into one beautiful, calm operation.",
+    "quoteAuthor": "Amelie Laurent",
+    "quoteRole": "Private chef · Paris",
+    "acceptInvite": "Accept Invite",
+    "newPassword": "New Password",
+    "setPassword": "Set Password"
+  },
+  "nav": {
+    "expand": "Expand navigation",
+    "collapse": "Collapse navigation",
+    "account": "Your account",
+    "member": "Member",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "experiences": "Experiences",
+    "myBookings": "My Bookings",
+    "services": "Services",
+    "bookings": "Bookings",
+    "payments": "Payments",
+    "users": "Users"
+  },
+  "dashboard": {
+    "searchPlaceholder": "Search experiences and chefs...",
+    "shortcut": "Ctrl K",
+    "date": "Tuesday, June 2",
+    "greeting": "Good evening, {{ firstName }}. Your next table is almost set.",
+    "heroDescription": "Chef Amelie is preparing the seasonal tasting menu for your party of six this Saturday.",
+    "browseExperiences": "Browse experiences",
+    "viewBookings": "View bookings",
+    "upcomingExperiences": "Upcoming experiences",
+    "reservedChefVisits": "Your reserved chef visits, in order of date.",
+    "seeAll": "See all",
+    "saturdayDinner": "Saturday dinner",
+    "seasonalTastingMenu": "Seasonal tasting menu",
+    "pendingConfirmation": "Pending confirmation",
+    "privateWinePairing": "Private wine pairing",
+    "stats": {
+      "upcoming": {
+        "label": "Upcoming experiences",
+        "detail": "Next in 4 days"
+      },
+      "lifetime": {
+        "label": "Lifetime bookings",
+        "detail": "+2 this quarter"
+      },
+      "invested": {
+        "label": "Total invested",
+        "detail": "Avg $1,053 / event"
+      },
+      "status": {
+        "label": "Member status",
+        "value": "Curator",
+        "detail": "Top 5% of guests"
+      }
+    }
+  }
+}

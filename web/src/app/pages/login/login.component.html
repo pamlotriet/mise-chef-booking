@@ -1,92 +1,94 @@
-<main class="h-screen overflow-hidden bg-[#f7f3ed] text-[#101510]">
+<main class="h-screen overflow-hidden bg-(--color-page-bg) text-(--color-text)">
     <section class="grid h-screen grid-cols-1 lg:grid-cols-2">
         <div class="flex h-screen min-h-0 flex-col px-6 py-6 sm:px-12 lg:px-22">
             <header class="flex items-center gap-3">
                 <div
-                    class="flex size-9 items-center justify-center rounded-full bg-[#d7a65a] font-serif text-lg font-semibold text-[#142417]">
+                    class="flex size-9 items-center justify-center rounded-full bg-(--color-accent) font-serif text-lg font-semibold text-(--color-accent-text)">
                     M
                 </div>
-                <span class="font-serif text-2xl text-[#17130d]">Mise</span>
+                <span class="font-serif text-2xl text-(--nav-accent-contrast)">{{ "app.brand" | translate }}</span>
             </header>
 
             <div class="flex min-h-0 flex-1 items-center justify-center py-4">
                 <div class="w-full max-w-[385px]">
                     <div
-                        class="mb-4 inline-flex items-center gap-2 rounded-full border border-[#ded6cb] bg-white/65 px-4 py-2 text-sm text-[#675f55] shadow-sm">
-                        <span class="size-1.5 rounded-full bg-[#d7a65a]"></span>
-                        By invitation only
+                        class="mb-4 inline-flex items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface-translucent) px-4 py-2 text-sm text-(--color-muted-alt) shadow-sm">
+                        <span class="size-1.5 rounded-full bg-(--color-accent)"></span>
+                        {{ "auth.invitationOnly" | translate }}
                     </div>
 
-                    <h1 class="font-serif text-4xl leading-tight text-[#090806] sm:text-5xl">Welcome back.</h1>
-                    <p class="mt-3 text-base leading-7 text-[#5d6570]">
-                        Sign in to manage your private chef experiences, bookings, and reservations.
+                    <h1 class="font-serif text-4xl leading-tight text-(--color-text-strong) sm:text-5xl">{{ "auth.welcomeBack" | translate }}</h1>
+                    <p class="mt-3 text-base leading-7 text-(--color-muted)">
+                        {{ "auth.loginDescription" | translate }}
                     </p>
 
                     <form class="mt-8 space-y-5" [formGroup]="form" (ngSubmit)="submit()">
                         <label class="block">
                             <span
-                                class="mb-2 block text-xs font-medium uppercase tracking-wide text-[#2f3a32]">Email</span>
+                                class="mb-2 block text-xs font-medium uppercase tracking-wide text-(--color-label)">{{ "auth.email" | translate }}</span>
                             <div
-                                class="flex h-12 items-center gap-3 rounded-xl border border-[#1f4d36] bg-white px-4 shadow-[0_0_0_3px_rgba(31,77,54,0.08)]">
-                                <span class="text-[#7b746b]" aria-hidden="true">@</span>
-                                <input class="h-full min-w-0 flex-1 bg-transparent text-sm text-[#111813] outline-none disabled:cursor-not-allowed"
-                                    type="email" formControlName="email" [disabled]="authStore.loading()" />
+                                class="flex h-12 items-center gap-3 rounded-xl border border-(--color-border-strong) bg-(--color-surface) px-4 shadow-[0_0_0_3px_var(--color-focus-ring)]">
+                                <span class="text-(--color-subtle)" aria-hidden="true">@</span>
+                                <input
+                                    class="h-full min-w-0 flex-1 bg-transparent text-sm text-(--color-text-soft) outline-none disabled:cursor-not-allowed"
+                                    type="email" formControlName="email" [disabled]="loading()" />
                             </div>
                         </label>
 
                         <label class="block">
                             <div class="mb-2 flex items-center justify-between">
-                                <span class="text-xs font-medium uppercase tracking-wide text-[#2f3a32]">Password</span>
-                                <button class="text-xs text-[#123d2a]" type="button">Forgot?</button>
+                                <span class="text-xs font-medium uppercase tracking-wide text-(--color-label)">{{ "auth.password" | translate }}</span>
+                                <button class="text-xs text-(--color-link)" type="button">{{ "auth.forgot" | translate }}</button>
                             </div>
-                            <div class="flex h-12 items-center gap-3 rounded-xl border border-[#ded6cb] bg-white px-4">
-                                <span class="text-[#7b746b]" aria-hidden="true">*</span>
-                                <input class="h-full min-w-0 flex-1 bg-transparent text-sm text-[#111813] outline-none disabled:cursor-not-allowed"
-                                    type="password" formControlName="password" [disabled]="authStore.loading()" />
+                            <div class="flex h-12 items-center gap-3 rounded-xl border border-(--color-border) bg-(--color-surface) px-4">
+                                <span class="text-(--color-subtle)" aria-hidden="true">*</span>
+                                <input
+                                    class="h-full min-w-0 flex-1 bg-transparent text-sm text-(--color-text-soft) outline-none disabled:cursor-not-allowed"
+                                    type="password" formControlName="password" [disabled]="loading()" />
                             </div>
                         </label>
 
                         <button
-                            class="flex h-[52px] w-full items-center justify-center gap-3 rounded-xl bg-[#183c29] text-sm font-semibold text-white shadow-lg shadow-[#183c29]/10 transition hover:bg-[#12311f] disabled:cursor-not-allowed disabled:opacity-60"
-                            type="submit" [disabled]="form.invalid || authStore.loading()">
-                            @if (authStore.loading()) {
+                            class="flex h-[52px] w-full items-center justify-center gap-3 rounded-xl bg-(--color-primary) text-sm font-semibold text-(--color-primary-text) shadow-lg shadow-[color:var(--color-focus-ring)] transition hover:bg-(--color-primary-hover) disabled:cursor-not-allowed disabled:opacity-60"
+                            type="submit" [disabled]="form.invalid || loading()">
+                            @if (loading()) {
                             <i class="pi pi-spinner pi-spin text-base" aria-hidden="true"></i>
-                            <span>Signing in...</span>
+                            <span>{{ "auth.signingIn" | translate }}</span>
                             } @else {
-                            <span>Sign in</span>
+                            <span>{{ "auth.signIn" | translate }}</span>
                             <span aria-hidden="true">&rarr;</span>
                             }
                         </button>
                     </form>
 
-                    @if (authStore.error()) {
-                    <p class="mt-5 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{{ authStore.error() }}</p>
+                    @if (error()) {
+                    <p class="mt-5 rounded-xl bg-(--color-error-bg) px-4 py-3 text-sm text-(--color-error-text)">{{ error() }}</p>
                     }
 
-                    <p class="mt-7 text-sm text-[#554f47]">
-                        New to Mise?
-                        <a class="font-medium text-[#101510]" href="/accept-invite">Accept an invitation</a>
+                    <p class="mt-7 text-sm text-(--color-muted)">
+                        {{ "auth.newToMise" | translate }}
+                        <a class="font-medium text-(--color-text)" href="/accept-invite">{{ "auth.acceptInvitation" | translate }}</a>
                     </p>
                 </div>
             </div>
 
-            <footer class="text-xs text-[#686158]">&copy; 2026 Mise Hospitality &middot; All rights reserved</footer>
+            <footer class="text-xs text-(--color-muted)">{{ "auth.footer" | translate }}</footer>
         </div>
         <aside class="relative hidden h-screen overflow-hidden lg:block">
             <img src="/assets/images/login-decor-2.jpg" alt="" class="h-full w-full  object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-black/10"></div>
-            <figure class="absolute bottom-16 left-12 right-12 text-white">
+            <div class="absolute inset-0 bg-gradient-to-t from-(--color-image-overlay-from) via-(--color-image-overlay-via) to-(--color-image-overlay-to)"></div>
+            <figure class="absolute bottom-16 left-12 right-12 text-(--color-primary-text)">
                 <blockquote class="max-w-xl font-serif text-3xl leading-tight drop-shadow-sm">
-                    &ldquo;Mise turned our scattered booking spreadsheets into one beautiful, calm operation.&rdquo;
+                    &ldquo;{{ "auth.quote" | translate }}&rdquo;
                 </blockquote>
                 <figcaption class="mt-7 flex items-center gap-3">
                     <span
-                        class="flex size-10 items-center justify-center rounded-full bg-[#d7a65a] font-serif text-lg text-[#1c170f]">
+                        class="flex size-10 items-center justify-center rounded-full bg-(--color-accent) font-serif text-lg text-(--nav-accent-contrast)">
                         A
                     </span>
                     <span>
-                        <span class="block text-sm font-semibold">Amelie Laurent</span>
-                        <span class="block text-xs text-white/75">Private chef &middot; Paris</span>
+                        <span class="block text-sm font-semibold">{{ "auth.quoteAuthor" | translate }}</span>
+                        <span class="block text-xs text-(--color-on-image-muted)">{{ "auth.quoteRole" | translate }}</span>
                     </span>
                 </figcaption>
             </figure>

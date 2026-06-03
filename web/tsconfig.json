@@ -11,7 +11,15 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "paths": {
+      "@assets/*": ["./src/assets/*"],
+      "@pages/*": ["./src/app/pages/*"],
+      "@components/*": ["./src/app/core/shared/components/*"],
+      "@api/*": ["./src/app/api/*"],
+      "@store/*": ["./src/app/core/shared/store/*"],
+      "@auth/*": ["./src/app/core/auth/*"]
+    }
   },
   "angularCompilerOptions": {
     "strictTemplates": true

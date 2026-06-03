@@ -6,14 +6,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseService } from '../base-service';
-import { ApiConfiguration } from '../api-configuration';
-import { StrictHttpResponse } from '../strict-http-response';
+import { BaseService } from '@api/base-service';
+import { ApiConfiguration } from '@api/api-configuration';
+import { StrictHttpResponse } from '@api/strict-http-response';
 
-import { apiHealthAdminGet } from '../fn/health/api-health-admin-get';
-import { ApiHealthAdminGet$Params } from '../fn/health/api-health-admin-get';
-import { apiHealthGet } from '../fn/health/api-health-get';
-import { ApiHealthGet$Params } from '../fn/health/api-health-get';
+import { apiHealthAdminGet } from '@api/fn/health/api-health-admin-get';
+import { ApiHealthAdminGet$Params } from '@api/fn/health/api-health-admin-get';
+import { apiHealthGet } from '@api/fn/health/api-health-get';
+import { ApiHealthGet$Params } from '@api/fn/health/api-health-get';
 
 @Injectable({ providedIn: 'root' })
 export class HealthService extends BaseService {
