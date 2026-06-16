@@ -23,6 +23,10 @@ public class ServicesController(AppDbContext dbContext) : ControllerBase
                 service.Description,
                 service.Price,
                 service.DurationMinutes,
+                service.CuisineId,
+                service.ChefId,
+                service.MinimumGuests,
+                service.MaximumGuests,
                 service.ImageUrl,
                 service.IsActive
             ))
